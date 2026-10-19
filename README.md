@@ -20,8 +20,8 @@ the preview update live, then download the result as an image you can share.
 - **Multi-platform ready** — the home page and nav are driven by a single
   platform list, so new platforms are easy to add.
 
-Currently supported: **X**. Instagram, LinkedIn, TikTok, Facebook, and Threads
-are scaffolded as "coming soon."
+Currently supported: **X** and **Instagram**. LinkedIn, TikTok, Facebook, and
+Threads are scaffolded as "coming soon."
 
 ## Tech Stack
 
@@ -63,17 +63,23 @@ fake-social-gen/
 │  ├─ layout.js              # Root layout: fonts, header, global background
 │  ├─ globals.css            # Tailwind import
 │  ├─ page.js                # Home page — platform picker
-│  └─ x/page.js              # /x route → renders <XTools />
+│  ├─ x/page.js              # /x route → renders <XTools />
+│  └─ instagram/page.js      # /instagram route → renders <IGTools />
 ├─ components/
 │  ├─ SiteHeader.jsx         # Shared sticky navigation
 │  ├─ ui/Controls.jsx        # Reusable form primitives (Field, Button, Toggle…)
-│  └─ X/
-│     ├─ XTools.jsx          # Client editor: state, controls, PNG export
-│     └─ XCard.jsx           # Presentational X post card (accepts a ref)
+│  ├─ X/
+│  │  ├─ XTools.jsx          # Client editor: state, controls, PNG export
+│  │  └─ XCard.jsx           # Presentational X post card (accepts a ref)
+│  └─ Instagram/
+│     ├─ IGTools.jsx         # Client editor: state, controls, PNG export
+│     └─ IGCard.jsx          # Presentational Instagram feed post (accepts a ref)
 ├─ lib/
 │  ├─ platforms.js           # Platform metadata used by home page + nav
 │  ├─ formatXDate.js         # "3:04 PM · Oct 20, 2026"
-│  └─ formatXNumber.js       # "8.4K", "1.2M"
+│  ├─ formatXNumber.js       # "8.4K", "1.2M"
+│  ├─ formatIGDate.js        # "OCTOBER 20, 2026"
+│  └─ formatIGNumber.js      # "1,284" / "12.4K"
 └─ public/                   # Static assets, incl. default-avatar-x.png
 ```
 
