@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -16,11 +16,11 @@ const createDefaultThread = () => ({
       avatar: "",
       time: "Today at 9:14 AM",
       bot: false,
-      text: "morning all — deploy is green, staging is stable, and I only broke it twice",
+      text: "morning all â€” deploy is green, staging is stable, and I only broke it twice",
       reply: null,
       reactions: [
-        { emoji: "🔥", count: 12, me: true },
-        { emoji: "😂", count: 4, me: false },
+        { emoji: "ðŸ”¥", count: 12, me: true },
+        { emoji: "ðŸ˜‚", count: 4, me: false },
       ],
     },
     {
@@ -31,7 +31,7 @@ const createDefaultThread = () => ({
       bot: true,
       text: "Build #4821 deployed to production in 3m 12s. No regressions detected.",
       reply: null,
-      reactions: [{ emoji: "✅", count: 9, me: false }],
+      reactions: [{ emoji: "âœ…", count: 9, me: false }],
     },
     {
       name: "Sam Okafor",
@@ -79,7 +79,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -195,7 +195,7 @@ export default function DCTools() {
               ...message,
               reactions: [
                 ...message.reactions,
-                { emoji: "🔥", count: 1, me: false },
+                { emoji: "ðŸ”¥", count: 1, me: false },
               ],
             }
           : message,
@@ -236,7 +236,7 @@ export default function DCTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -326,7 +326,7 @@ export default function DCTools() {
                 onChange={(event) =>
                   updateMessage(index, "text", event.target.value)
                 }
-                placeholder="Message…"
+                placeholder="Messageâ€¦"
               />
 
               <div className="grid grid-cols-2 gap-2">
@@ -371,14 +371,14 @@ export default function DCTools() {
                     onChange={(event) =>
                       updateReply(index, "name", event.target.value)
                     }
-                    placeholder="Replying to…"
+                    placeholder="Replying toâ€¦"
                   />
                   <TextInput
                     value={message.reply.text}
                     onChange={(event) =>
                       updateReply(index, "text", event.target.value)
                     }
-                    placeholder="Quoted message…"
+                    placeholder="Quoted messageâ€¦"
                   />
                 </div>
               ) : null}
@@ -481,7 +481,7 @@ export default function DCTools() {
           className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 p-6"
           style={{ backgroundColor: thread.dark ? "#1E1F22" : "#F2F3F5" }}
         >
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <DCCard ref={cardRef} {...thread} />
           </div>
         </div>
@@ -494,7 +494,7 @@ export default function DCTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

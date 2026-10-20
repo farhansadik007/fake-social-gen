@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -17,7 +17,7 @@ const createDefaultPost = () => ({
   replies: 96,
   reposts: 34,
   comments: [
-    { name: "Marcus Reid", text: "every system works until week 2 😭", likes: 42, time: "2h", avatar: "" },
+    { name: "Marcus Reid", text: "every system works until week 2 ðŸ˜­", likes: 42, time: "2h", avatar: "" },
     { name: "Priya Nair", text: "saved. trying this tomorrow (maybe)", likes: 8, time: "1h", avatar: "" },
   ],
   createdAt: new Date().toISOString(),
@@ -59,7 +59,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -134,7 +134,7 @@ export default function THTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -307,7 +307,7 @@ export default function THTools() {
                   onChange={(event) =>
                     updateComment(index, "text", event.target.value)
                   }
-                  placeholder="Reply…"
+                  placeholder="Replyâ€¦"
                 />
               </div>
             ))}
@@ -335,7 +335,7 @@ export default function THTools() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-100/70 p-6">
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <THCard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -348,7 +348,7 @@ export default function THTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

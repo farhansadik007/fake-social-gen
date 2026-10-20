@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { platforms } from "@/lib/platforms";
 
 export default function SiteHeader() {
-  const available = platforms.filter((platform) => platform.available);
-
   return (
     <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/80 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
@@ -17,16 +14,19 @@ export default function SiteHeader() {
           Fake Social Gen
         </Link>
 
-        <nav className="flex items-center gap-4 text-sm text-zinc-500">
-          {available.map((platform) => (
-            <Link
-              key={platform.id}
-              href={platform.href}
-              className="transition hover:text-zinc-900"
-            >
-              {platform.name}
-            </Link>
-          ))}
+        <nav className="flex items-center gap-1 text-sm">
+          <Link
+            href="/#posts"
+            className="rounded-lg px-3 py-1.5 font-medium text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900"
+          >
+            Posts
+          </Link>
+          <Link
+            href="/#chats"
+            className="rounded-lg px-3 py-1.5 font-medium text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900"
+          >
+            Chats
+          </Link>
         </nav>
       </div>
     </header>

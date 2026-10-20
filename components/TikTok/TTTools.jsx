@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Layers, MessageCircle, Plus, RotateCcw, X } from "lucide-react";
@@ -13,7 +13,7 @@ const createDefaultPost = () => ({
   verified: false,
   avatar: "",
   video: "",
-  caption: "pov: you finally fixed the bug at 3am 🐛✨ #devlife #coding",
+  caption: "pov: you finally fixed the bug at 3am ðŸ›âœ¨ #devlife #coding",
   music: "original sound - jane.doe",
   liked: false,
   likes: 128400,
@@ -25,7 +25,7 @@ const createDefaultPost = () => ({
   comments: [
     {
       name: "marcus.dev",
-      text: "the 3am fix is always the real one 😭",
+      text: "the 3am fix is always the real one ðŸ˜­",
       likes: 2400,
       liked: true,
       createdAt: new Date().toISOString(),
@@ -91,7 +91,7 @@ function ImageField({ label, hint, value, onChange, round = "rounded-md" }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -178,7 +178,7 @@ export default function TTTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -194,7 +194,7 @@ export default function TTTools() {
           </h1>
           <p className="mt-1 text-sm text-zinc-500">
             Build a video screen, a comment sheet, or comments layered over the
-            video — then export a high-resolution PNG.
+            video â€” then export a high-resolution PNG.
           </p>
         </div>
 
@@ -244,7 +244,7 @@ export default function TTTools() {
             <TextArea
               value={postData.caption}
               onChange={(event) => update("caption", event.target.value)}
-              placeholder="Say something…"
+              placeholder="Say somethingâ€¦"
             />
           </Field>
 
@@ -359,7 +359,7 @@ export default function TTTools() {
                 onChange={(event) =>
                   updateComment(index, "text", event.target.value)
                 }
-                placeholder="Comment…"
+                placeholder="Commentâ€¦"
               />
             </div>
           ))}
@@ -410,7 +410,7 @@ export default function TTTools() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-100/70 p-6">
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             {postData.view === "video" && (
               <TTVideoCard ref={cardRef} {...postData} />
             )}
@@ -431,7 +431,7 @@ export default function TTTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

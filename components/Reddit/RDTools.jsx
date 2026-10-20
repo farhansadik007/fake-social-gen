@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -91,7 +91,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -212,7 +212,7 @@ export default function RDTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -302,7 +302,7 @@ export default function RDTools() {
             <TextArea
               value={postData.text}
               onChange={(event) => update("text", event.target.value)}
-              placeholder="Optional body text…"
+              placeholder="Optional body textâ€¦"
             />
           </Field>
 
@@ -420,7 +420,7 @@ export default function RDTools() {
                 onChange={(event) =>
                   updateComment(index, "text", event.target.value)
                 }
-                placeholder="Comment…"
+                placeholder="Commentâ€¦"
               />
 
               <div className="grid grid-cols-2 gap-2">
@@ -470,7 +470,7 @@ export default function RDTools() {
                     onChange={(event) =>
                       updateReply(index, replyIndex, "text", event.target.value)
                     }
-                    placeholder="Reply…"
+                    placeholder="Replyâ€¦"
                   />
                   <div className="grid grid-cols-2 gap-2">
                     <TextInput
@@ -536,7 +536,7 @@ export default function RDTools() {
           className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 p-6"
           style={{ backgroundColor: postData.dark ? "#0A1113" : "#F2F4F5" }}
         >
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <RDCard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -549,7 +549,7 @@ export default function RDTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

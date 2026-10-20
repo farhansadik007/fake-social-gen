@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -11,12 +11,12 @@ const createDefaultPost = () => ({
   verified: false,
   location: "Golden Gate Bridge, San Francisco",
   media: "",
-  caption: "chasing golden hour 🌅 #35mm",
+  caption: "chasing golden hour ðŸŒ… #35mm",
   liked: false,
   likes: 1284,
   commentCount: 37,
   comments: [
-    { username: "alex.frames", text: "this is unreal 😍" },
+    { username: "alex.frames", text: "this is unreal ðŸ˜" },
     { username: "photo.mika", text: "what lens is this?" },
   ],
   createdAt: new Date().toISOString(),
@@ -58,7 +58,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -130,7 +130,7 @@ export default function IGTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -193,7 +193,7 @@ export default function IGTools() {
 
           <ImageField
             label="Media"
-            hint="Square images work best — feed posts are cropped to 1:1."
+            hint="Square images work best â€” feed posts are cropped to 1:1."
             value={postData.media}
             onChange={(value) => update("media", value)}
           />
@@ -202,7 +202,7 @@ export default function IGTools() {
             <TextArea
               value={postData.caption}
               onChange={(event) => update("caption", event.target.value)}
-              placeholder="Say something…"
+              placeholder="Say somethingâ€¦"
             />
           </Field>
 
@@ -283,7 +283,7 @@ export default function IGTools() {
                   onChange={(event) =>
                     updateComment(index, "text", event.target.value)
                   }
-                  placeholder="Comment…"
+                  placeholder="Commentâ€¦"
                 />
               </div>
             ))}
@@ -311,7 +311,7 @@ export default function IGTools() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-100/70 p-6">
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <IGCard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -324,7 +324,7 @@ export default function IGTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

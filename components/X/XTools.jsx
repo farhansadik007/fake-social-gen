@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, RotateCcw } from "lucide-react";
@@ -69,7 +69,7 @@ export default function XTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an avatar URL, try uploading the image instead — external hosts often block export.",
+        "Could not export the image. If you used an avatar URL, try uploading the image instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -121,7 +121,7 @@ export default function XTools() {
               <TextInput
                 value={postData.avatar}
                 onChange={(event) => update("avatar", event.target.value)}
-                placeholder="https://…"
+                placeholder="https://â€¦"
               />
               <Button
                 type="button"
@@ -156,7 +156,7 @@ export default function XTools() {
             <TextInput
               value={postData.affiliation}
               onChange={(event) => update("affiliation", event.target.value)}
-              placeholder="https://…"
+              placeholder="https://â€¦"
             />
           </Field>
         </div>
@@ -260,7 +260,7 @@ export default function XTools() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-100/70 p-6">
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <XCard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function XTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -9,7 +9,7 @@ const createDefaultPost = () => ({
   name: "Jane Doe",
   avatar: "",
   verified: false,
-  text: "Six years ago I quit my job to build something of my own. Today we crossed 10,000 customers 🎉\n\nTo everyone who took a chance on us — thank you. This is just the start.",
+  text: "Six years ago I quit my job to build something of my own. Today we crossed 10,000 customers ðŸŽ‰\n\nTo everyone who took a chance on us â€” thank you. This is just the start.",
   seeMore: false,
   media: "",
   reactions: 4820,
@@ -17,8 +17,8 @@ const createDefaultPost = () => ({
   commentCount: 312,
   shareCount: 47,
   comments: [
-    { name: "Marcus Reid", text: "Well deserved — congrats to the whole team!", likes: 24, time: "2h", avatar: "" },
-    { name: "Priya Nair", text: "So proud of you both ❤️", likes: 0, time: "1h", avatar: "" },
+    { name: "Marcus Reid", text: "Well deserved â€” congrats to the whole team!", likes: 24, time: "2h", avatar: "" },
+    { name: "Priya Nair", text: "So proud of you both â¤ï¸", likes: 0, time: "1h", avatar: "" },
   ],
   createdAt: new Date().toISOString(),
   dark: false,
@@ -68,7 +68,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -140,7 +140,7 @@ export default function FBTools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -200,7 +200,7 @@ export default function FBTools() {
           </Field>
 
           <Toggle
-            label="Show “See more”"
+            label="Show â€œSee moreâ€"
             description="Truncate the body to 3 lines"
             checked={postData.seeMore}
             onChange={(checked) => update("seeMore", checked)}
@@ -315,7 +315,7 @@ export default function FBTools() {
                   onChange={(event) =>
                     updateComment(index, "text", event.target.value)
                   }
-                  placeholder="Comment…"
+                  placeholder="Commentâ€¦"
                 />
                 <div className="grid grid-cols-2 gap-2">
                   <TextInput
@@ -366,7 +366,7 @@ export default function FBTools() {
           className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 p-6"
           style={{ backgroundColor: postData.dark ? "#18191A" : "#F0F2F5" }}
         >
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <FBCard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -379,7 +379,7 @@ export default function FBTools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

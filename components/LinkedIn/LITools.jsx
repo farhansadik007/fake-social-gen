@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { Download, ImageIcon, Plus, RotateCcw, X } from "lucide-react";
@@ -7,11 +7,11 @@ import { Button, Field, TextArea, TextInput, Toggle } from "@/components/ui/Cont
 
 const createDefaultPost = () => ({
   name: "Sarah Chen",
-  headline: "Senior Product Designer at Acme · Ex-Google",
+  headline: "Senior Product Designer at Acme Â· Ex-Google",
   avatar: "",
   degree: "1st",
   isPage: false,
-  text: "After 6 years in design, here are 5 things I wish someone told me earlier:\n\n1. Portfolio > résumé\n2. Ship before it's perfect\n3. Learn to write\n4. Talk to users weekly\n5. Protect your energy\n\nAgree? 👇",
+  text: "After 6 years in design, here are 5 things I wish someone told me earlier:\n\n1. Portfolio > rÃ©sumÃ©\n2. Ship before it's perfect\n3. Learn to write\n4. Talk to users weekly\n5. Protect your energy\n\nAgree? ðŸ‘‡",
   seeMore: false,
   media: "",
   reactions: 1842,
@@ -29,7 +29,7 @@ const createDefaultPost = () => ({
     {
       name: "Priya Nair",
       headline: "Founder, Lumen Labs",
-      text: "Saved. Sharing with my team 🙌",
+      text: "Saved. Sharing with my team ðŸ™Œ",
       time: "1h",
       avatar: "",
     },
@@ -40,11 +40,11 @@ const createDefaultPost = () => ({
 
 const DEGREES = ["", "1st", "2nd", "3rd"];
 const REACTIONS = [
-  { id: "like", label: "Like 👍" },
-  { id: "celebrate", label: "Celebrate 👏" },
-  { id: "support", label: "Support 🙌" },
-  { id: "love", label: "Love ❤️" },
-  { id: "insightful", label: "Insightful 💡" },
+  { id: "like", label: "Like ðŸ‘" },
+  { id: "celebrate", label: "Celebrate ðŸ‘" },
+  { id: "support", label: "Support ðŸ™Œ" },
+  { id: "love", label: "Love â¤ï¸" },
+  { id: "insightful", label: "Insightful ðŸ’¡" },
 ];
 
 function toLocalInputValue(iso) {
@@ -82,7 +82,7 @@ function ImageField({ label, hint, value, onChange }) {
         <TextInput
           value={value.startsWith("data:") ? "" : value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="https://… or upload"
+          placeholder="https://â€¦ or upload"
         />
         <Button
           type="button"
@@ -157,7 +157,7 @@ export default function LITools() {
     } catch (error) {
       console.error(error);
       alert(
-        "Could not export the image. If you used an image URL, try uploading the file instead — external hosts often block export.",
+        "Could not export the image. If you used an image URL, try uploading the file instead â€” external hosts often block export.",
       );
     } finally {
       setExporting(false);
@@ -237,12 +237,12 @@ export default function LITools() {
             <TextArea
               value={postData.text}
               onChange={(event) => update("text", event.target.value)}
-              placeholder="Write something…"
+              placeholder="Write somethingâ€¦"
             />
           </Field>
 
           <Toggle
-            label="Show “see more”"
+            label="Show â€œsee moreâ€"
             description="Truncate the body to 3 lines"
             checked={postData.seeMore}
             onChange={(checked) => update("seeMore", checked)}
@@ -363,7 +363,7 @@ export default function LITools() {
                   onChange={(event) =>
                     updateComment(index, "text", event.target.value)
                   }
-                  placeholder="Comment…"
+                  placeholder="Commentâ€¦"
                 />
               </div>
             ))}
@@ -391,7 +391,7 @@ export default function LITools() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl border border-dashed border-zinc-300 bg-zinc-100/70 p-6">
-          <div className="w-fit">
+          <div className="mx-auto w-fit">
             <LICard ref={cardRef} {...postData} />
           </div>
         </div>
@@ -404,7 +404,7 @@ export default function LITools() {
             disabled={exporting}
           >
             <Download className="h-4 w-4" />
-            {exporting ? "Exporting…" : "Download PNG"}
+            {exporting ? "Exportingâ€¦" : "Download PNG"}
           </Button>
           <Button
             type="button"

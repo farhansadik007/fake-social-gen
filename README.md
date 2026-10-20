@@ -21,10 +21,13 @@ the preview update live, then download the result as an image you can share.
   over the video, sharing one editor state.
 - **Multi-platform ready** — the home page and nav are driven by a single
   platform list, so new platforms are easy to add.
+- **Chat screenshots** — a second category of phone-proportioned message
+  threads, with per-message side, timestamps, reactions, and call events.
 
 Currently supported: **X**, **Instagram**, **LinkedIn**, **TikTok**,
-**Facebook**, **Threads**, **Reddit**, and **Discord** — every platform in the
-list.
+**Facebook**, **Threads**, **Reddit**, and **Discord** for posts, plus
+**WhatsApp**, **iMessage**, **Telegram**, **Messenger**, **Instagram DMs**, and
+**Discord DMs** for chats.
 
 ## Tech Stack
 
@@ -46,9 +49,13 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000>. The home page lists the available generators;
-the editors live at `/x`, `/instagram`, `/linkedin`, `/tiktok`, `/facebook`,
-`/threads`, `/reddit`, and `/discord`.
+Open <http://localhost:3000>. The home page lists the available generators in
+two groups.
+
+- Posts: `/x`, `/instagram`, `/linkedin`, `/tiktok`, `/facebook`, `/threads`,
+  `/reddit`, `/discord`
+- Chats: `/chats/whatsapp`, `/chats/imessage`, `/chats/telegram`,
+  `/chats/messenger`, `/chats/instagram-dm`, `/chats/discord-dm`
 
 ### Scripts
 
@@ -74,7 +81,15 @@ fake-social-gen/
 │  ├─ facebook/page.js       # /facebook route → renders <FBTools />
 │  ├─ threads/page.js        # /threads route → renders <THTools />
 │  ├─ reddit/page.js         # /reddit route → renders <RDTools />
-│  └─ discord/page.js        # /discord route → renders <DCTools />
+│  ├─ discord/page.js        # /discord route → renders <DCTools />
+│  └─ chats/
+│     ├─ page.js             # /chats index → chat picker
+│     ├─ whatsapp/page.js    # /chats/whatsapp  → <WATools />
+│     ├─ imessage/page.js    # /chats/imessage  → <IMTools />
+│     ├─ telegram/page.js    # /chats/telegram  → <TGTools />
+│     ├─ messenger/page.js   # /chats/messenger → <MSTools />
+│     ├─ instagram-dm/page.js # /chats/instagram-dm → <IGDMTools />
+│     └─ discord-dm/page.js  # /chats/discord-dm → <DCDMTools />
 ├─ components/
 │  ├─ SiteHeader.jsx         # Shared sticky navigation
 │  ├─ ui/Controls.jsx        # Reusable form primitives (Field, Button, Toggle…)
@@ -105,6 +120,16 @@ fake-social-gen/
 │  └─ Discord/
 │     ├─ DCTools.jsx         # Client editor: messages, reactions, PNG export
 │     └─ DCCard.jsx          # Channel header, message list, composer
+│  └─ Chats/
+│     ├─ ChatKit.jsx         # Shared frame, status bar, bubbles, tails, grouping
+│     ├─ ChatEditor.jsx      # Shared message list editor (text, call, image)
+│     ├─ usePngExport.js     # Shared 2× PNG export hook
+│     ├─ WATools.jsx / WACard.jsx      # WhatsApp
+│     ├─ IMTools.jsx / IMCard.jsx      # iMessage
+│     ├─ TGTools.jsx / TGCard.jsx      # Telegram
+│     ├─ MSTools.jsx / MSCard.jsx      # Messenger
+│     ├─ IGDMTools.jsx / IGDMCard.jsx  # Instagram DMs
+│     └─ DCDMTools.jsx / DCDMCard.jsx  # Discord DMs
 ├─ lib/
 │  ├─ platforms.js           # Platform metadata used by home page + nav
 │  ├─ formatXDate.js         # "3:04 PM · Oct 20, 2026"
@@ -124,7 +149,10 @@ fake-social-gen/
 │  └─ formatDCTime.js        # "Today at 9:14 AM"
 └─ public/
    ├─ default-avatar-x.png    # Shared fallback avatar
-   └─ facebook/               # Real Facebook reaction artwork (like, love, haha, wow, sad, angry)
+   ├─ facebook/               # Real Facebook reaction artwork (like, love, haha, wow, sad, angry)
+   └─ chats/
+      ├─ whatsapp-bg.png      # WhatsApp light doodle wallpaper
+      └─ whatsapp-bg-dark.jpg # WhatsApp dark wallpaper
 ```
 
 ### How it fits together
@@ -133,6 +161,11 @@ Each platform is a route (`app/<platform>/page.js`) that renders a
 `<Platform>Tools` editor. The editor holds the post state and renders the
 presentational `<Platform>Card`, which is the DOM node exported to PNG. Shared
 formatting lives in `lib/`, and shared form controls live in `components/ui/`.
+
+Chat platforms live under `app/chats/` and share the geometry in
+`components/Chats/ChatKit.jsx` — frame, status bar, bubble tail, and message
+grouping — while each card supplies its own header, surfaces, and composer, so
+the apps stay visually distinct rather than turning into one recoloured shell.
 
 ## Adding a New Platform
 
