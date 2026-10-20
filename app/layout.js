@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Reddit_Sans } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 
@@ -12,6 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const redditSans = Reddit_Sans({
+  variable: "--font-reddit-sans",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Fake Social Gen",
   description:
@@ -22,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${redditSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-zinc-50 font-sans text-zinc-900">
         <SiteHeader />

@@ -17,11 +17,14 @@ the preview update live, then download the result as an image you can share.
 - **Verified badge & affiliation** — optional blue check and a small org badge.
 - **Light / dark cards** — export either theme independently of the app UI.
 - **Abbreviated counts** — engagement numbers render X-style (`8400` → `8.4K`).
+- **Three TikTok views** — video screen, comment sheet, or comments docked
+  over the video, sharing one editor state.
 - **Multi-platform ready** — the home page and nav are driven by a single
   platform list, so new platforms are easy to add.
 
-Currently supported: **X** and **Instagram**. LinkedIn, TikTok, Facebook, and
-Threads are scaffolded as "coming soon."
+Currently supported: **X**, **Instagram**, **LinkedIn**, **TikTok**,
+**Facebook**, **Threads**, **Reddit**, and **Discord** — every platform in the
+list.
 
 ## Tech Stack
 
@@ -44,7 +47,8 @@ npm run dev
 ```
 
 Open <http://localhost:3000>. The home page lists the available generators;
-the X editor lives at `/x`.
+the editors live at `/x`, `/instagram`, `/linkedin`, `/tiktok`, `/facebook`,
+`/threads`, `/reddit`, and `/discord`.
 
 ### Scripts
 
@@ -64,23 +68,63 @@ fake-social-gen/
 │  ├─ globals.css            # Tailwind import
 │  ├─ page.js                # Home page — platform picker
 │  ├─ x/page.js              # /x route → renders <XTools />
-│  └─ instagram/page.js      # /instagram route → renders <IGTools />
+│  ├─ instagram/page.js      # /instagram route → renders <IGTools />
+│  ├─ linkedin/page.js       # /linkedin route → renders <LITools />
+│  ├─ tiktok/page.js         # /tiktok route → renders <TTTools />
+│  ├─ facebook/page.js       # /facebook route → renders <FBTools />
+│  ├─ threads/page.js        # /threads route → renders <THTools />
+│  ├─ reddit/page.js         # /reddit route → renders <RDTools />
+│  └─ discord/page.js        # /discord route → renders <DCTools />
 ├─ components/
 │  ├─ SiteHeader.jsx         # Shared sticky navigation
 │  ├─ ui/Controls.jsx        # Reusable form primitives (Field, Button, Toggle…)
 │  ├─ X/
 │  │  ├─ XTools.jsx          # Client editor: state, controls, PNG export
 │  │  └─ XCard.jsx           # Presentational X post card (accepts a ref)
-│  └─ Instagram/
-│     ├─ IGTools.jsx         # Client editor: state, controls, PNG export
-│     └─ IGCard.jsx          # Presentational Instagram feed post (accepts a ref)
+│  ├─ Instagram/
+│  │  ├─ IGTools.jsx         # Client editor: state, controls, PNG export
+│  │  └─ IGCard.jsx          # Presentational Instagram feed post (accepts a ref)
+│  ├─ LinkedIn/
+│  │  ├─ LITools.jsx         # Client editor: state, controls, PNG export
+│  │  └─ LICard.jsx          # Presentational LinkedIn feed post (accepts a ref)
+│  ├─ TikTok/
+│  │  ├─ TTTools.jsx         # Client editor: state, 3-way switcher, PNG export
+│  │  ├─ TTVideoLayer.jsx    # Shared video bg, tabs, action rail, meta
+│  │  ├─ TTVideoCard.jsx     # 9:16 video screen
+│  │  ├─ TTOverlayCard.jsx   # Comment sheet docked over the video
+│  │  └─ TTCommentsCard.jsx  # Standalone comment sheet + input bar
+│  ├─ Facebook/
+│  │  ├─ FBTools.jsx         # Client editor: state, controls, PNG export
+│  │  └─ FBCard.jsx          # Feed post + reaction artwork + comments
+│  ├─ Threads/
+│  │  ├─ THTools.jsx         # Client editor: state, controls, PNG export
+│  │  └─ THCard.jsx          # Presentational Threads post
+│  ├─ Reddit/
+│  │  ├─ RDTools.jsx         # Client editor: state, nested comments, PNG export
+│  │  └─ RDCard.jsx          # Feed post, vote pill, threaded comments
+│  └─ Discord/
+│     ├─ DCTools.jsx         # Client editor: messages, reactions, PNG export
+│     └─ DCCard.jsx          # Channel header, message list, composer
 ├─ lib/
 │  ├─ platforms.js           # Platform metadata used by home page + nav
 │  ├─ formatXDate.js         # "3:04 PM · Oct 20, 2026"
 │  ├─ formatXNumber.js       # "8.4K", "1.2M"
 │  ├─ formatIGDate.js        # "OCTOBER 20, 2026"
-│  └─ formatIGNumber.js      # "1,284" / "12.4K"
-└─ public/                   # Static assets, incl. default-avatar-x.png
+│  ├─ formatIGNumber.js      # "1,284" / "12.4K"
+│  ├─ formatLIDate.js        # "2h", "3d", "Jan 15"
+│  ├─ formatLINumber.js      # "1,842" / "12.4K"
+│  ├─ formatTTTime.js        # "2h", "5d", "3mo"
+│  ├─ formatTTNumber.js      # "842" / "128.4K" / "1.2M"
+│  ├─ formatFBDate.js        # "2h", "1d", "Jan 15"
+│  ├─ formatFBNumber.js      # "4.8K", "1.2M"
+│  ├─ formatTHTime.js        # "2h", "3d", "Jan 15"
+│  ├─ formatTHNumber.js      # "1,284" / "12.4K"
+│  ├─ formatRDDate.js        # "16h ago", "3d ago"
+│  ├─ formatRDNumber.js      # "1.2k", "12k"
+│  └─ formatDCTime.js        # "Today at 9:14 AM"
+└─ public/
+   ├─ default-avatar-x.png    # Shared fallback avatar
+   └─ facebook/               # Real Facebook reaction artwork (like, love, haha, wow, sad, angry)
 ```
 
 ### How it fits together
